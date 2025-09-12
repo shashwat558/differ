@@ -1,6 +1,7 @@
 import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import morgan from "morgan";
+import { authRouter } from "./modules/auth/auth.controller";
 
 const app = express();
 
@@ -10,12 +11,13 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 
-app.use("/api/user", userRouter);
-app.use("api/orders", ordersRouter);
-
+app.use("/api/auth", authRouter);
 
 
 app.use((err: any, req: Request, res: Response, next:NextFunction) => {
     console.error(err.stack);
     res.status(500).json({error: "Something went wrong"});
 })
+
+
+export default app;

@@ -18,7 +18,7 @@ services:
      container_name: cfd-redis-instance
      restart: always
      ports:
-       - 6379: 6379
+       - "6379:6379"
      volumes:
        - redis_data:/var/lib/redis/data
 volumes:

@@ -1,4 +1,5 @@
 import express, { Request, Response, Router } from "express";
+import { sendMagicLink, verifyMagicLink } from "./auth.services";
 
 const router = Router();
 
@@ -20,4 +21,4 @@ router.post("/callback", async(req, res) => {
 })
 
 
-export default router;
+export {router as authRouter};

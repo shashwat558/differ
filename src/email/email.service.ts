@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
     }
 })
 export async function sendEmail(email: string, message: string, token: string) {
-    const link = `http://localhost:5000/auth/callback?token=${token}`;
+    const link = `http://localhost:5000/api/auth/callback?token=${token}`;
 
     const info = await transporter.sendMail({
         from: `Differ trading app ${env.SMTP_EMAIL}`,

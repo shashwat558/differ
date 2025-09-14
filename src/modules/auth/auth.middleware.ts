@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 
 const MAGIC_SECRET = env.MAGIC_SECRET;
 
-export async function authMddleware(req: Request, res:Response, next:NextFunction) {
+export async function authMiddleware(req: Request, res:Response, next:NextFunction) {
 
     const authHeader = req.headers.authorization;
 

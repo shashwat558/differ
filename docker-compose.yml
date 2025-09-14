@@ -2,8 +2,8 @@ version: "3.9"
 
 services:
    postgres: 
-     image: timescale/timescaledb:2.22.0-pg17
-     container_name: cfd_timescaledb
+     image: postgres:17
+     container_name: cfd_postgres
      environment: 
        POSTGRES_USER: postgres
        POSTGRES_PASSWORD: password

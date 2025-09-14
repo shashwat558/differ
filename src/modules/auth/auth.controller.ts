@@ -12,6 +12,7 @@ router.post("/login", async(req:Request, res:Response) => {
 router.post("/callback", async(req, res) => {
     const {token} = req.query;
     const session = await verifyMagicLink(token as string);
+    console.log(session?.token, session?.user)
 
     if(!session) {
         return res.status(401).json({error: "Invalid or expired link"});

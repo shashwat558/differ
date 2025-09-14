@@ -1,14 +1,15 @@
-/*
-  Warnings:
-
-  - A unique constraint covering the columns `[email]` on the table `User` will be added. If there are existing duplicate values, this will fail.
-
-*/
 -- CreateEnum
 CREATE TYPE "public"."order_type" AS ENUM ('BUY', 'SELL');
 
--- AlterTable
-ALTER TABLE "public"."User" ADD COLUMN     "balance" DOUBLE PRECISION NOT NULL DEFAULT 0;
+-- CreateTable
+CREATE TABLE "public"."User" (
+    "id" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "balance" DOUBLE PRECISION NOT NULL DEFAULT 0,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "User_pkey" PRIMARY KEY ("id")
+);
 
 -- CreateTable
 CREATE TABLE "public"."Order" (

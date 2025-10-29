@@ -27,7 +27,7 @@ model Order {
   id           String  @id @default(uuid())
   userId       String
   type         order_type
-  symbol       String
+  symbol       String 
   price        Float
   quantity     Float
   created_at   DateTime @default(now())

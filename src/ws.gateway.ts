@@ -8,6 +8,16 @@ import redis from "./config/redis";
 export function initWebSocket(server: any) {
     
     const wss = new WebSocketServer({server});
+      const subscriber = redis.duplicate();
+    subscriber.connect();
+    subscriber.subscribe("market:BTCUSDT", (msg) => {
+        wss.clients.forEach((client) => {
+            if(client.readyState === 1) {
+                client.send(JSON.stringify({type: "market", tick: JSON.parse(msg)}));
+            
+            }
+        })
+    })
 
     wss.on("connection", (ws) => {
         console.log("Client connected");
@@ -32,15 +42,7 @@ export function initWebSocket(server: any) {
         })
     });
 
-    const subscriber = redis.duplicate();
-    subscriber.connect();
-    subscriber.subscribe("market:ticks", (msg) => {
-        wss.clients.forEach((client) => {
-            if(client.readyState === 1) {
-                client.send(JSON.stringify({type: "market", tick: JSON.parse(msg)}));
-            }
-        })
-    })
+  
 
     subscriber.subscribe("orders:new", (msg) => {
         wss.clients.forEach((client) => {

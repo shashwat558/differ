@@ -18,7 +18,7 @@ export async function startBinanceStream(symbol: string) {
             timestamp: trade.T
         }
         
-
+        
         redis.publish(`market:${trade.s}`, JSON.stringify(tick));
 
     });

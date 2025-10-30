@@ -3,13 +3,14 @@ import http from "http";
 import { env } from './config/env';
 import { initWebSocket } from './ws.gateway';
 import { startBinanceStream } from './modules/market/market.adapter';
+import { initWebSocketServer } from './modules/market/market.gateway';
 
 const PORT = env.PORT || 5000;
 
 
 const server = http.createServer(app);
 
-initWebSocket(server);
+initWebSocketServer(server);
 const symbols = ["BTCUSDT", "ETHUSDT", "BNBUSDT"];
 
 symbols.forEach(symbol => startBinanceStream(symbol))

@@ -1,7 +1,7 @@
 import { WebSocketServer } from "ws";
 import redis from "../../config/redis";
 
-function initWebSocketServer(server: any){
+export function initWebSocketServer(server: any){
     const wss = new WebSocketServer({server});
     const clientSubscription = new Map<any, Set<String>>();
     const subscriber = redis.duplicate() as any;
